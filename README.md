@@ -61,4 +61,38 @@ However, it's important to note that adding more terms to the Taylor series does
 
 In practice, it's often more efficient to use a finite number of terms in the Taylor series that is appropriate for the range of values of $x$ being considered. This can lead to a good balance between accuracy and computational efficiency.
 
+# Fourier series
+The Fourier formula expresses a periodic function $f(t)$ as a sum of sine and cosine waves with different frequencies, amplitudes, and phases. The formula is given by:
 
+$$f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left(a_n \cos\left(\frac{2\pi n t}{T}\right) + b_n \sin\left(\frac{2\pi n t}{T}\right)\right)$$
+
+where $T$ is the period of the function, $a_0$, $a_n$, and $b_n$ are the Fourier coefficients given by the formulas:
+
+$$a_0 = \frac{1}{T}\int_{-T/2}^{T/2}f(t)dt$$
+
+$$a_n = \frac{2}{T}\int_{-T/2}^{T/2}f(t)\cos\left(\frac{2\pi n t}{T}\right)dt$$
+
+$$b_n = \frac{2}{T}\int_{-T/2}^{T/2}f(t)\sin\left(\frac{2\pi n t}{T}\right)dt$$
+
+The terms $\cos\left(\frac{2\pi n t}{T}\right)$ and $\sin\left(\frac{2\pi n t}{T}\right)$ represent harmonic waves with frequencies $\frac{n}{T},, n \in \mathbb{Z}$, and the coefficients $a_n$ and $b_n$ represent the amplitudes and phases of these waves. The term $\frac{a_0}{2}$ represents the average value of the function over one period.
+
+The Fourier formula is a powerful tool for analyzing and manipulating periodic functions. It allows us to break down complex functions into simpler components, and to reconstruct functions from their Fourier coefficients. It is widely used in many areas of science and engineering, including signal processing, audio and image compression, and quantum mechanics.
+
+## How to approximate the functions with Fourier series?
+* Identify the period of the function:
+   Let $T$ be the period of the function.
+* Determine the coefficients of the Fourier series:
+   * The Fourier series coefficients $a_0$, $a_n$, and $b_n$ can be calculated using the following formulas:
+     $$a_0 = \frac{1}{T}\int_{-T/2}^{T/2}f(t)dt$$
+     $$a_n = \frac{2}{T}\int_{-T/2}^{T/2}f(t)\cos\left(\frac{2\pi n t}{T}\right)dt$$
+     $$b_n = \frac{2}{T}\int_{-T/2}^{T/2}f(t)\sin\left(\frac{2\pi n t}{T}\right)dt$$
+   * Here, $f(t)$ is the periodic function we want to approximate, and $n$ is a non-negative integer.
+* Construct the Fourier series:
+
+ * The Fourier series for $f(t)$ is given by:
+   $$f(t) \approx \frac{a_0}{2} + \sum_{n=1}^{\infty} \left(a_n \cos\left(\frac{2\pi n t}{T}\right) + b_n \sin\left(\frac{2\pi n t}{T}\right)\right)$$
+
+* Choose the number of terms:
+  Let $N$ be the number of terms we include in the Fourier series.
+* Evaluate the approximation:
+  The accuracy of the Fourier series approximation can be evaluated by comparing it with the original function $f(t)$. We can use various measures such as the mean squared error or the maximum error to assess the accuracy of the approximation.
