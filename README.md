@@ -96,3 +96,39 @@ The Fourier formula is a powerful tool for analyzing and manipulating periodic f
   Let $N$ be the number of terms we include in the Fourier series.
 * Evaluate the approximation:
   The accuracy of the Fourier series approximation can be evaluated by comparing it with the original function $f(t)$. We can use various measures such as the mean squared error or the maximum error to assess the accuracy of the approximation.
+
+
+# Hermit Interpolation
+
+Hermit interpolation is a method for constructing a polynomial function that passes through a given set of data points, while also taking into account the first and possibly higher derivatives at those points. The resulting polynomial is typically smoother and more accurate than a polynomial constructed using only the data points themselves.
+
+The resulting Hermit polynomial is guaranteed to pass through all of the data points and to have the specified derivatives at those points. Moreover, it tends to be smoother and more accurate than a polynomial constructed using only the data points themselves, especially when the data points are noisy or irregularly spaced.
+Hermit interpolation has a wide range of applications in numerical analysis, including computer graphics, computer-aided design, and physics simulations. It is also commonly used in data analysis and visualization to interpolate between discrete data points and to smooth out noisy data.
+
+Let $\{x_i, y_i, y'_i, y''_i, \ldots, y^{(k)}_i\}$ for $i=0,1,\ldots,n$ be a set of $n+1$ distinct data points and their derivatives up to order $k$. The Hermit polynomial of degree at most $2n+1$ that passes through these points is given by:
+
+$$
+p(x) = \sum_{i=0}^n y_i h_i(x) + \sum_{i=0}^n y'_i \hat{h}_i(x)
+$$
+
+where $h_i(x)$ and $\hat{h}_i(x)$ are the blending functions defined as:
+
+$$
+h_i(x) = (1-2L_i(x) L'_i(x))L_i(x)^2
+$$
+
+$$
+\hat{h}_i(x) = (x-x_i)L_i(x)^2
+$$
+
+and $L_i(x)$ is the Lagrange basis polynomial that satisfies $L_i(x_j) = \delta_{ij}$, where $\delta_{ij}$ is the Kronecker delta.
+
+The blending functions $h_i(x)$ and $\hat{h}_i(x)$ are constructed so that they are equal to one at $x=x_i$ and zero at all other data points, and also satisfy the condition that the Hermit polynomial $p(x)$ has the desired derivatives at each data point. Specifically, the coefficients of $p(x)$ are chosen so that $p^{(m)}(x_i) = y^{(m)}_i$ for $m=0,1,\ldots,k$.
+
+By construction, the resulting Hermit polynomial $p(x)$ passes through all of the given data points and has the specified derivatives at each point. Moreover, it tends to be smoother and more accurate than a polynomial constructed using only the data points themselves.
+
+
+# Refrences 
+[1] Weisstein, Eric W. "Hermite Polynomial." From MathWorld--A Wolfram Web Resource. https://mathworld.wolfram.com/HermitePolynomial.html
+
+[2] Press, W. H., et al. "Numerical Recipes in C: The Art of Scientific Computing." 2nd ed., Cambridge University Press, 1992.
