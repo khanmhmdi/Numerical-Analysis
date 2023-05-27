@@ -96,3 +96,70 @@ The Fourier formula is a powerful tool for analyzing and manipulating periodic f
   Let $N$ be the number of terms we include in the Fourier series.
 * Evaluate the approximation:
   The accuracy of the Fourier series approximation can be evaluated by comparing it with the original function $f(t)$. We can use various measures such as the mean squared error or the maximum error to assess the accuracy of the approximation.
+
+
+# Hermit Interpolation
+
+Hermit interpolation is a method for constructing a polynomial function that passes through a given set of data points, while also taking into account the first and possibly higher derivatives at those points. The resulting polynomial is typically smoother and more accurate than a polynomial constructed using only the data points themselves.
+
+The resulting Hermit polynomial is guaranteed to pass through all of the data points and to have the specified derivatives at those points. Moreover, it tends to be smoother and more accurate than a polynomial constructed using only the data points themselves, especially when the data points are noisy or irregularly spaced.
+Hermit interpolation has a wide range of applications in numerical analysis, including computer graphics, computer-aided design, and physics simulations. It is also commonly used in data analysis and visualization to interpolate between discrete data points and to smooth out noisy data.
+
+Let $\{x_i, y_i, y'_i, y''_i, \ldots, y^{(k)}_i\}$ for $i=0,1,\ldots,n$ be a set of $n+1$ distinct data points and their derivatives up to order $k$. The Hermit polynomial of degree at most $2n+1$ that passes through these points is given by:
+
+$$
+p(x) = \sum_{i=0}^n y_i h_i(x) + \sum_{i=0}^n y'_i \hat{h}_i(x)
+$$
+
+where $h_i(x)$ and $\hat{h}_i(x)$ are the blending functions defined as:
+
+$$
+h_i(x) = (1-2L_i(x) L'_i(x))L_i(x)^2
+$$
+
+$$
+\hat{h}_i(x) = (x-x_i)L_i(x)^2
+$$
+
+and $L_i(x)$ is the Lagrange basis polynomial that satisfies $L_i(x_j) = \delta_{ij}$, where $\delta_{ij}$ is the Kronecker delta.
+
+The blending functions $h_i(x)$ and $\hat{h}_i(x)$ are constructed so that they are equal to one at $x=x_i$ and zero at all other data points, and also satisfy the condition that the Hermit polynomial $p(x)$ has the desired derivatives at each data point. Specifically, the coefficients of $p(x)$ are chosen so that $p^{(m)}(x_i) = y^{(m)}_i$ for $m=0,1,\ldots,k$.
+
+By construction, the resulting Hermit polynomial $p(x)$ passes through all of the given data points and has the specified derivatives at each point. Moreover, it tends to be smoother and more accurate than a polynomial constructed using only the data points themselves.
+
+# Lagrange Interpolation
+Lagrange interpolation is a method of approximating a function using a polynomial that passes through a set of given data points. The goal of interpolation is to estimate the value of a function at a point within a given interval, based on a limited number of data points. In other words, interpolation allows us to estimate values of a function at points where we do not have direct measurements. The Lagrange interpolation method is particularly useful because it is simple and straightforward to implement, and can be used to approximate a wide range of functions.
+
+Given $n+1$ distinct data points $\{(x_0, y_0), (x_1, y_1), \ldots, (x_n, y_n)\}$, where $x_i \neq x_j$ for $i \neq j$, the Lagrange interpolation polynomial $P(x)$ of degree at most $n$ that passes through these points is given by:
+
+$$
+P(x) = \sum_{i=0}^n y_i L_i(x),
+$$
+
+where $L_i(x)$ are the Lagrange basis polynomials defined as:
+
+$$
+L_i(x) = \prod_{j=0, j \neq i}^n \frac{x - x_j}{x_i - x_j}.
+$$
+
+The Lagrange basis polynomials are constructed so that $L_i(x_j) = \delta_{ij}$, where $\delta_{ij}$ is the Kronecker delta. That is, $L_i(x)$ is equal to $1$ when $x = x_i$, and is equal to $0$ when $x = x_j$ for all $j \neq i$. Therefore, the Lagrange interpolation polynomial $P(x)$ constructed using these basis polynomials passes through all of the given data points.
+
+One important property of the Lagrange interpolation polynomial is that it is unique, meaning that there is only one polynomial of degree at most $n$ that passes through a given set of $n+1$ distinct data points. This property makes Lagrange interpolation a useful tool for approximating functions and for numerical integration.
+
+However, one potential drawback of Lagrange interpolation is that the complexity of the polynomial increases rapidly as the number of data points increases. This can lead to numerical instability and inaccurate results, particularly when the data is noisy or when the degree of the polynomial is very high. Other methods, such as spline interpolation, may be more appropriate in these cases.
+
+# Refrences 
+[1] Weisstein, Eric W. "Hermite Polynomial." From MathWorld--A Wolfram Web Resource. https://mathworld.wolfram.com/HermitePolynomial.html
+
+[2] Press, W. H., et al. "Numerical Recipes in C: The Art of Scientific Computing." 2nd ed., Cambridge University Press, 1992.
+
+[3] Atkinson, K. E. (1989). An Introduction to Numerical Analysis (2nd ed.). John Wiley & Sons. ISBN 0-471-50023-2.
+
+[4] Burden, R. L., & Faires, J. D. (2000). Numerical Analysis (7th ed.). Brooks/Cole. ISBN 0-534-38216-9.
+
+[5] Conte, S. D., & de Boor, C. (1980). Elementary Numerical Analysis: An Algorithmic Approach (3rd ed.). McGraw-Hill. ISBN 0-07-012447-7.
+
+[6] Davis, P. J. (1963). Interpolation and Approximation. Dover Publications. ISBN 0-486-60172-5.
+
+[7] Stoer, J., & Bulirsch, R. (2002). Introduction to Numerical Analysis (3rd ed.). Springer-Verlag. ISBN 0-387-95452-X.
+
